@@ -28,6 +28,16 @@ use Cake\Controller\Controller;
  */
 class AppController extends Controller
 {
+    public function beforeFilter(EventInterface $event)
+    {
+        parent::beforeFilter($event);
+
+        $this->response = $this->response->cors($this->request)
+            ->allowOrigin(['*'])
+            ->allowMethods(['GET','POST','PUT'])
+            ->allowHeaders(['*'])
+            ->build();
+    }
     /**
      * Initialization hook method.
      *
