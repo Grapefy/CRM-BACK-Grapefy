@@ -2,7 +2,7 @@
 
 use Cake\Cache\Engine\FileEngine;
 use Cake\Database\Connection;
-use Cake\Database\Driver\Mysql;
+use Cake\Database\Driver\Postgres;
 use Cake\Error\ExceptionRenderer;
 use Cake\Log\Engine\FileLog;
 use Cake\Mailer\Transport\MailTransport;
@@ -270,12 +270,12 @@ return [
      * to your application's datastores.
      *
      * ### Notes
-     * - Drivers include Mysql Postgres Sqlite Sqlserver
+     * - Drivers include Postgres Postgres Sqlite Sqlserver
      *   See vendor\cakephp\cakephp\src\Database\Driver for complete list
      * - Do not use periods in database name - it may lead to error.
      *   See https://github.com/cakephp/cakephp/issues/6471 for details.
      * - 'encoding' is recommended to be set to full UTF-8 4-Byte support.
-     *   E.g set it to 'utf8mb4' in MariaDB and MySQL and 'utf8' for any
+     *   E.g set it to 'utf8mb4' in MariaDB and Postgres and 'utf8' for any
      *   other RDBMS.
      */
     'Datasources' => [
@@ -291,19 +291,19 @@ return [
          */
         'default' => [
             'className' => Connection::class,
-            'driver' => Mysql::class,
+            'driver' => Postgres::class,
             'persistent' => false,
             'timezone' => 'UTC',
 
             /*
-             * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support, in CakePHP 3.6
+             * For MariaDB/Postgres the internal default changed from utf8 to utf8mb4, aka full utf-8 support, in CakePHP 3.6
              */
             //'encoding' => 'utf8mb4',
 
             /*
-             * If your MySQL server is configured with `skip-character-set-client-handshake`
+             * If your Postgres server is configured with `skip-character-set-client-handshake`
              * then you MUST use the `flags` config to set your charset encoding.
-             * For e.g. `'flags' => [\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4']`
+             * For e.g. `'flags' => [\PDO::Postgres_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4']`
              */
             'flags' => [],
             'cacheMetadata' => true,
@@ -320,10 +320,10 @@ return [
             'quoteIdentifiers' => false,
 
             /*
-             * During development, if using MySQL < 5.6, uncommenting the
+             * During development, if using Postgres < 5.6, uncommenting the
              * following line could boost the speed at which schema metadata is
              * fetched from the database. It can also be set directly with the
-             * mysql configuration directive 'innodb_stats_on_metadata = 0'
+             * Postgres configuration directive 'innodb_stats_on_metadata = 0'
              * which is the recommended value in production environments
              */
             //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
@@ -334,7 +334,7 @@ return [
          */
         'test' => [
             'className' => Connection::class,
-            'driver' => Mysql::class,
+            'driver' => Postgres::class,
             'persistent' => false,
             'timezone' => 'UTC',
             //'encoding' => 'utf8mb4',
