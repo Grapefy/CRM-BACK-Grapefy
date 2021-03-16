@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace App\Controller;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * Administradores Controller
@@ -22,7 +23,7 @@ class AdministradoresController extends AppController
         // $administradores = $this->paginate($this->Administradores);
 
         $administradores = $this->Administradores->find('all',[
-            'order' => 'idadministrador'
+            'order' => 'id_administrador'
         ]);
 
         $this->set(compact('administradores'));
@@ -55,14 +56,15 @@ class AdministradoresController extends AppController
      */
     public function add()
     {
-        $administradore = $this->Administradores->newEmptyEntity();
-        $administradore = $this->Administradores->patchEntity($administradore, $this->request->getData());
+        $data =  $this->request->input('json_decode');
+        $request_data = $this->Administradores->treatData($data);
+        $administradore = $this->Administradores->newEntity($request_data);
         if ($this->Administradores->save($administradore)) {
             $message = "success";
         } else {
             $message = "error";
         }
-        $this->set(compact('message'));
+        $this->set(compact('request_data'));
         $this->viewBuilder()->setOption('serialize', true);
         $this->RequestHandler->renderAs($this, 'json');
     }
@@ -99,14 +101,15 @@ class AdministradoresController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
-        $administradore = $this->Administradores->get($id);
-        if ($this->Administradores->delete($administradore)) {
-            $this->Flash->success(__('The administradore has been deleted.'));
+        $conn = ConnectionManager::get('default');
+        $sql = 'DELETE FROM administradores WHERE id_administrador = :id';
+        if ($conn->execute($sql,['id'=>$id])) {
+            $message = "success";
         } else {
-            $this->Flash->error(__('The administradore could not be deleted. Please, try again.'));
+            $message = "error";
         }
-
-        return $this->redirect(['action' => 'index']);
+        $this->set(compact('message'));
+        $this->viewBuilder()->setOption('serialize', true);
+        $this->RequestHandler->renderAs($this, 'json');
     }
 }

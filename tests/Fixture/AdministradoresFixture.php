@@ -17,13 +17,13 @@ class AdministradoresFixture extends TestFixture
      */
     // phpcs:disable
     public $fields = [
-        'idadministrador' => ['type' => 'integer', 'length' => 10, 'autoIncrement' => true, 'default' => null, 'null' => false, 'comment' => null, 'precision' => null, 'unsigned' => null],
+        'id_administrador' => ['type' => 'integer', 'length' => 10, 'autoIncrement' => true, 'default' => null, 'null' => false, 'comment' => null, 'precision' => null, 'unsigned' => null],
         'nome' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
         'email' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
         'created' => ['type' => 'timestampfractional', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => 6],
         'modified' => ['type' => 'timestampfractional', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => 6],
         '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['idadministrador'], 'length' => []],
+            'primary' => ['type' => 'primary', 'columns' => ['id_administrador'], 'length' => []],
         ],
     ];
     // phpcs:enable
@@ -36,11 +36,11 @@ class AdministradoresFixture extends TestFixture
     {
         $this->records = [
             [
-                'idadministrador' => 1,
+                'id_administrador' => 1,
                 'nome' => 'Lorem ipsum dolor sit amet',
                 'email' => 'Lorem ipsum dolor sit amet',
-                'created' => 1615682858,
-                'modified' => 1615682858,
+                'created' => 1615919460,
+                'modified' => 1615919460,
             ],
         ];
         parent::init();

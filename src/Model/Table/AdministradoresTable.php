@@ -40,8 +40,8 @@ class AdministradoresTable extends Table
         parent::initialize($config);
 
         $this->setTable('administradores');
-        $this->setDisplayField('idadministrador');
-        $this->setPrimaryKey('idadministrador');
+        $this->setDisplayField('id_administrador');
+        $this->setPrimaryKey('id_administrador');
 
         $this->addBehavior('Timestamp');
     }
@@ -55,8 +55,8 @@ class AdministradoresTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->integer('idadministrador')
-            ->allowEmptyString('idadministrador', null, 'create');
+            ->integer('id_administrador')
+            ->allowEmptyString('id_administrador', null, 'create');
 
         $validator
             ->scalar('nome')
@@ -67,5 +67,15 @@ class AdministradoresTable extends Table
             ->allowEmptyString('email');
 
         return $validator;
+    }
+
+    public function treatData($data){
+        $array_tratamento = [
+            'nome' => $data->nome,
+            'email' => $data->email,
+            'created' => $data->created,
+            'modified' => $data->modified
+        ];
+        return $array_tratamento;
     }
 }

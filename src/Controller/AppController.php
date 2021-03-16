@@ -35,7 +35,7 @@ class AppController extends Controller
 
         $this->response = $this->response->cors($this->request)
             ->allowOrigin(['*'])
-            ->allowMethods(['POST','PUT','GET','PATCH'])
+            ->allowMethods(['*'])
             ->allowHeaders(['*'])
             ->build();
 

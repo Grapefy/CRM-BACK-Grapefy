@@ -8,7 +8,7 @@ use Cake\ORM\Entity;
 /**
  * Administradore Entity
  *
- * @property int $idadministrador
+ * @property int $id_administrador
  * @property string|null $nome
  * @property string|null $email
  * @property \Cake\I18n\FrozenTime|null $created

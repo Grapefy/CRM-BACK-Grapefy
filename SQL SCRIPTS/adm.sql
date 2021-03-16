@@ -1,5 +1,5 @@
 CREATE TABLE administradores (
-    idAdministrador SERIAL PRIMARY KEY,
+    id_administrador SERIAL PRIMARY KEY,
     nome VARCHAR,
     email VARCHAR,
     created TIMESTAMP,
