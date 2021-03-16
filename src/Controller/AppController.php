@@ -17,6 +17,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\Event\EventInterface;
 
 /**
  * Application Controller
@@ -34,9 +35,12 @@ class AppController extends Controller
 
         $this->response = $this->response->cors($this->request)
             ->allowOrigin(['*'])
-            ->allowMethods(['GET','POST','PUT'])
+            ->allowMethods(['POST','PUT','GET','PATCH'])
             ->allowHeaders(['*'])
             ->build();
+
+        // $this->eventManager()->off($this->Csrf);
+
     }
     /**
      * Initialization hook method.
